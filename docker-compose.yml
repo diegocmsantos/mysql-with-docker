@@ -1,0 +1,22 @@
+version: "3"
+services:
+  mysqldb:
+    image: mysql:8
+    networks:
+      - employee-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=Abcqwe123*
+      - MYSQL_DATABASE=bootdb
+
+  mysql-with-docker:
+    image: mysql-with-docker
+    ports:
+      - "8080:8080"
+    networks:
+      - employee-mysql
+    restart: on-failure
+    depends_on:
+      - mysqldb
+
+networks:
+  employee-mysql:
